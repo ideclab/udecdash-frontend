@@ -1,6 +1,20 @@
 # UDECDash Frontend
 UDECDash Frontend es un componente de UDECDash, visite la wiki del repositorio para encontrar más información sobre este y otros componentes.
 
+````
+Copyright (C) <2021> <IDECLab>
+
+Esta biblioteca es software gratuito; puedes redistribuirlo y/o
+modificarlo bajo los términos del GNU Lesser General Public
+Licencia publicada por la Free Software Foundation; cualquiera
+versión 2.1 de la Licencia, o (a su elección) cualquier versión posterior.
+Esta biblioteca se distribuye con la esperanza de que sea útil,
+pero SIN NINGUNA GARANTÍA; sin siquiera la garantía implícita de
+COMERCIABILIDAD o APTITUD PARA UN PROPÓSITO EN PARTICULAR. Ver el GNU
+Licencia pública general menor para obtener más detalles.
+````
+
+
 ## Requisitos
 - [Vue-cli](https://cli.vuejs.org/ "Vue-cli")
 
@@ -10,7 +24,7 @@ UDECDash frontend está desarrollada en VueJS 2, por lo cual, hereda todos los r
 
 1) Descarga el proyecto
 
-`git clone https://github.com/xxxxx/interactive_dashboard_backend/`
+`git clone https://github.com/ideclab/udecdash-frontend.git`
 
 2) Instala las dependencias
 
