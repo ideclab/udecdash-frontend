@@ -1,0 +1,33 @@
+{
+    
+    "1":{
+        "prefix":"Mensaje estandar",
+        "subject":"Acceso a plataforma",
+        "body":"Estimado[estudiante],\nEspero que este bien \n\n atte. su profesor \n[profesor]"
+    },
+    "2":{
+        "prefix":"Saludos",
+        "subject":"Bienvenidos a mi curso",
+        "body":"Estimado[estudiante]\nEspero que este bien, gracias por inscribirse a mi curso\n\n atte. su profesor \n[profesor]"
+    },
+    "3":{
+        "prefix":"Agradecimientos",
+        "subject":"Mensaje de agradecimiento",
+        "body":"Estimado[estudiante]\nEste es un mensaje de agradecimiento \n\n atte. [profesor]"
+    },
+    "4":{
+        "prefix":"motivacion",
+        "subject":"Mensaje de motivacion",
+        "body":"Estimado[estudiante]\nEste es un mensaje de motivacion\n\n atte.\n [profesor]"
+    },
+    "5":{
+        "prefix":"Problemas de acceso",
+        "subject":"Mensaje por problemas de acceso",
+        "body":"Estimado[estudiante]\nEste es un mensaje para preguntar por problemas de acceso\n\n atte.\n [profesor]"
+    },
+    "6":{
+        "prefix":"Motivacion",
+        "subject":"Mensaje de motivacion",
+        "body":"Estimado[estudiante]\nEste es un mensaje de motivacion\n\n atte.\n [profesor]"
+    }
+}

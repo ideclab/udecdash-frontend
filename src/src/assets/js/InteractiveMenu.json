@@ -1,0 +1,287 @@
+{
+  "module_visualization": {
+    "title": "Visualización por modulo",
+    "first": [
+      {
+        "subtitle": "Propósito del reporte",
+        "content": [
+          "Reflejar la completación de los módulos en base al acceso de sus recursos."
+        ]
+      },
+      {
+        "subtitle": "Criterio",
+        "content": [
+          "La completación del módulo se construye mediante los y las estudiantes que ingresaron al menos una vez a todos los recursos de dicho módulo, siendo indiferente la cantidad total de visitas por cada recurso."
+        ]
+      },
+      {
+        "subtitle": "Obtención de datos",
+        "content": [
+          "Se obtiene la cantidad de recursos del módulo y los recursos que el o la estudiante visitó.",
+          "Se calcula un porcentaje de completación del módulo en base a los valores anteriores (Total de recursos - Recursos vistos), si el porcentaje es 100%, entonces tenemos una completación de módulo.",
+          "Se calcula un promedio de completación para el módulo basado en el total de los o las estudiantes de la sección y aquellos que tienen una completación de módulo, dando como resultado el progreso de completación de cada módulo."
+        ]
+      },
+      {
+        "subtitle": "Visualización",
+        "content": [
+          "Visualización general: El listado de todos los módulos del curso con su respectivo progreso de completación.",
+          "El listado de los diferentes tipos de recursos de canvas, la cantidad de recursos disponibles dentro del curso según su tipo y el promedio de visualizaciones de cada tipo de recurso",
+          "Segundo nivel: El listado de recursos del tipo seleccionado previamente junto a su porcentaje de visualización de los y las estudiantes",
+          "Tercer nivel: El listado de los y las estudiantes junto al estado de visualización del recurso previamente seleccionado."
+        ]
+      }
+    ]
+  },
+  "resource_type_usage": {
+    "title": "Visualizacion por tipo de recurso",
+    "first": [
+      {
+        "subtitle": "Propósito del reporte",
+        "content": [
+          "Mostrar la distribución de los diferentes tipos de recursos utilizados en el curso.",
+          "Reflejar las visualizaciones por parte de los y las estudiantes para cada tipo de recursos"
+        ]
+      },
+      {
+        "subtitle": "Criterio",
+        "content": [
+          "La distribución de recursos se construye mediante los recursos disponibles y la agrupación de estos recursos por su tipo.",
+          "Las visualizaciones del tipo de recurso se construyen mediante la agrupación de recursos del mismo tipo, para posteriormente asignar las visitas de los y las estudiantes a cada recurso, siendo indiferente la cantidad total de visitas por cada estudiante."
+        ]
+      },
+      {
+        "subtitle": "Obtención de datos",
+        "content": [
+          "Se obtiene el total de recursos del curso y se agrupan según su tipo.",
+          "Se calcula un porcentaje para cada grupo de recursos según la cantidad de recursos dentro del grupo y el total de recursos disponibles."
+        ]
+      },
+      {
+        "subtitle": "Visualización del tipo de recurso",
+        "content": [
+          "Se agrupan todos los recursos del mismo tipo y se le asignan los y las estudiantes que visualizaron cada recurso",
+          "Se calcula un porcentaje de visualización por cada estudiante según los recursos del grupo que visualizó",
+          "Se calcula el promedio de los porcentajes de visualización obtenidos anteriormente y se entrega dicho porcentaje por cada tipo de recurso."
+        ]
+      },
+      {
+        "subtitle": "Visualización",
+        "content": [
+          "Visualización general: Los diferentes tipos de recursos disponibles en canvas y el porcentaje de distribución que abarcan los recursos creados dentro del curso.",
+          "Se calcula un porcentaje de visualización por cada estudiante según los recursos del grupo que visualizó",
+          "Se calcula el promedio de los porcentajes de visualización obtenidos anteriormente y se entrega dicho porcentaje por cada tipo de recurso."
+        ]
+      },
+      {
+        "subtitle": "Observación",
+        "content": [
+          "Eventualmente, el acceso a algunos recursos puede generar interacciones extras por parte del sistema, estas acciones serán asignadas al respectivo usuario y proporcionales para todos estos."
+        ]
+      }
+    ]
+  },
+  "file_type_usage": {
+    "title": "Visualizacion por tipo de archivo",
+    "first": [
+      {
+        "subtitle": "Propósito del reporte",
+        "content": [
+          "Mostrar la diversidad de tipos de archivos subidos al curso.",
+          "Reflejar las visualizaciones por parte de los y las estudiantes para cada tipo de archivo."
+        ]
+      },
+      {
+        "subtitle": "Criterio",
+        "content": [
+          "Se obtienen todos los archivos que se encuentren agregados como ítem de módulo, posteriormente se agrupan según su MIME TYPE (Tipo de archivo) para clasificarlo en diferentes categorías.",
+          "Las visualizaciones del tipo de archivo se construyen mediante la agrupación de los archivos en sus diferentes categorías, para posteriormente asignar las visitas de los y las estudiantes a cada archivo, siendo indiferente la cantidad total de visitas por cada estudiante."
+        ]
+      },
+      {
+        "subtitle": "Obtención de datos",
+        "content": [
+          "Diversidad en el tipo de archivo: Se obtienen todos los archivos que se encuentren como ítem de módulo y se agrupan según su categoría (MIME TYPE)",
+          "Diversidad en el tipo de archivo: Se calcula un porcentaje para cada categoría de archivos según la cantidad de archivos dentro de la categoría y el total de archivos disponibles en los ítem de módulo.",
+          "Visualización del tipo de archivo: Se obtienen todos los archivos que se encuentren como ítem de módulo y se agrupan según su categoría (MIME TYPE)",
+          "Visualización del tipo de archivo: Se le asignan los y las estudiantes que visualizaron cada archivo",
+          "Visualización del tipo de archivo: Se calcula un porcentaje de visualización por cada estudiante según los archivos de la categoría que visualizó",
+          "Visualización del tipo de archivo: Se calcula el promedio de los porcentajes de visualización obtenidos anteriormente y se entrega dicho porcentaje por cada categoría de archivos."
+        ]
+      },
+      {
+        "subtitle": "Visualización",
+        "content": [
+          "Visualización general: Las categorías de archivos y el porcentaje que abarcan los archivos de dicha categoría sobre el total de archivos existentes.",
+          "El listado de las categorías de archivos, la cantidad de archivos disponibles dentro del curso según su categoría y el promedio de visualizaciones de cada tipo de archivo",
+          "Segundo nivel: El listado de archivos que corresponden a la categoría seleccionada, junto a su porcentaje de visualizaciones",
+          "Tercer nivel: El listado de los y las estudiantes junto al estado de visualización del archivo previamente seleccionado"
+        ]
+      }
+    ]
+  },
+  "interaction_by_resource": {
+    "title": "Interacción por recurso",
+    "first": [
+      {
+        "subtitle": "Propósito del reporte",
+        "content": [
+          "Mostrar los recursos con los cuales los estudiantes no están interactuando"
+        ]
+      },
+      {
+        "subtitle": "Criterio",
+        "content": [
+          "Por cada recurso se obtienen los estudiantes que vieron al menos una vez el recurso y aquellos que nunca ingresaron"
+        ]
+      },
+      {
+        "subtitle": "Obtención de datos",
+        "content": [
+          "Se obtiene el listado de recursos del curso y se le asignan las visualizaciones de cada estudiante",
+          "Se cuenta la cantidad de estudiantes que vieron al menos una vez el recurso y los que no lo vieron nunca"
+        ]
+      },
+      {
+        "subtitle": "Visualización",
+        "content": [
+          "Visualización general: La estructura del curso, donde se listan módulos y recursos junto a un indicador que muestra la cantidad de estudiantes que vieron el recurso -Al lado izquierdo, en color verde- y la cantidad de estudiantes que nunca ingresaron al recurso -Al lado derecho, en color rojo-.",
+          "Segundo nivel: El listado de los y las estudiantes de la sección junto a un indicador de visualización del recurso."
+        ]
+      }
+    ]
+  },
+  "resource_visualization": {
+    "title": "visualizacion de recursos",
+    "first": [
+      {
+        "subtitle": "Propósito del reporte",
+        "content": [
+          "Identificar qué recursos son los más visualizados por el estudiante."
+        ]
+      },
+      {
+        "subtitle": "Criterio",
+        "content": [
+          "Contar todas las visitas que pueden producirse sobre un recurso"
+        ]
+      },
+      {
+        "subtitle": "Obtención de datos",
+        "content": [
+          "Se obtienen los recursos del curso",
+          "Se cuenta el total de visitas por estudiante para cada recurso",
+          "Se suman las visitas de los estudiantes"
+        ]
+      },
+      {
+        "subtitle": "Visualización",
+        "content": [
+          "Visualización general: Un listado de recursos junto al total de visualizaciones por parte de la sección.",
+          "Segundo nivel: El listado de estudiantes y la cantidad total de visitas por cada estudiante para el recurso previamente seleccionado."
+        ]
+      },
+      {
+        "subtitle": "Observación",
+        "content": [
+          "Eventualmente, el acceso a algunos recursos puede generar interacciones extras por parte del sistema, estas acciones serán asignadas al respectivo usuario y proporcionales para todos estos."
+        ]
+      }
+    ]
+  },
+  "course_communication": {
+    "title": "Comunicación del curso",
+    "first": [
+      {
+        "subtitle": "Propósito del reporte",
+        "content": [
+          "Transparentar la distribución de la comunicación en los diferentes canales que tienen los y las estudiantes dentro del curso"
+        ]
+      },
+      {
+        "subtitle": "Criterio",
+        "content": [
+          "Se identifican los canales de comunicación que pueden haber disponibles dentro del curso (Foros, mail de canvas), luego contabilizan entradas (comentarios) en todos los foros no evaluados creados en el curso -Ya que si el foro es evaluado, puede condicionar la cantidad de comentarios de los y las estudiantes- y mensajes enviados por la herramienta de mail de canvas sin importar su destinatario. En base al total del contenido generado se calculará el porcentaje de uso de cada herramienta."
+        ]
+      },
+      {
+        "subtitle": "Obtención de datos",
+        "content": [
+          "Se cuentan las entradas en foros no evaluados",
+          "Se cuentan los mensajes del mail enviados por estudiantes",
+          "Se suman todas las entradas y mensajes y se calcula el respectivo porcentaje de uso de cada herramienta"
+        ]
+      },
+      {
+        "subtitle": "Visualización",
+        "content": [
+          "Visualización general: El porcentaje de utilización de cada herramienta, la cantidad de entradas/mensajes creados y la cantidad de participantes a quienes corresponden dichas creaciones.",
+          "Segundo nivel: El listado de estudiantes del curso junto a la cantidad de entradas creadas o mensajes creados, según la tarjeta en donde se profundiza en la información."
+        ]
+      }
+    ]
+  },
+  "evaluation_panic": {
+    "title": "Pánico de evaluacion",
+    "first": [
+      {
+        "subtitle": "Propósito del reporte",
+        "content": [
+          "Identificar los recursos vistos previos a la fecha de inicio de una evaluación y los recursos vistos posterior a la fecha de cierre de la evaluación"
+        ]
+      },
+      {
+        "subtitle": "Criterio",
+        "content": [
+          "Se obtienen los recursos que cuentan con visualizaciones los días relacionados a la evaluación."
+        ]
+      },
+      {
+        "subtitle": "Obtención de datos",
+        "content": [
+          "Se obtienen las visualizaciones de los estudiantes para los días relacionados a la evaluación (Antes y después)",
+          "Se suman las visualizaciones por estudiante para cada recurso",
+          "Se calcula el porcentaje de alumnos que vio el recurso al menos una vez (Sin importar el total de visualizaciones)"
+        ]
+      },
+      {
+        "subtitle": "Visualización",
+        "content": [
+          "Visualización general: Las evaluaciones que tienen definida una fecha de inicio y término. Además, sobre la evaluación aparecerá la fecha y la cantidad de recursos vistos antes de la evaluación y bajo la evaluación aparecerán los recursos vistos despues de la evaluación. Podrá ver los recursos en detalles haciendo un clic sobre la respectiva fecha.",
+          "Segundo nivel: El listado de recursos que se vieron en la fecha seleccionada, además del total de visualizaciones que recibió el archivo y la cantidad de estudiantes que ingresaron a ese recurso.",
+          "Tercer nivel: El listado de estudiantes junto a la cantidad de visualizaciones que realizó en el recurso previamente seleccionado."
+        ]
+      }
+    ]
+  },
+  "course_interaction": {
+    "title": "Interacciones del curso",
+    "first": [
+      {
+        "subtitle": "Propósito del reporte",
+        "content": [
+          "Mostrar en qué jornadas horarias y días los estudiantes interactuaron más con el curso"
+        ]
+      },
+      {
+        "subtitle": "Criterio",
+        "content": [
+          "Se agrupan las interacciones mensualmente por día de la semana y jornada horaria de\n              todos los y las estudiantes, entregando un total de interacciones ordenadas temporalmente."
+        ]
+      },
+      {
+        "subtitle": "Obtención de datos",
+        "content": [
+          "1.- Se agrupan las interacciones de los y las estudiantes por año, mes, dia de la semana y\n              jornada horaria",
+          "2.- Se suman las interacciones provenientes de la agrupación previa para cada jornada\n              horaria\n              "
+        ]
+      },
+      {
+        "subtitle": "Visualización",
+        "content": [
+          "La cantidad de interacciones por mes, agrupadas por dia de la semana y jornada horaria."
+        ]
+      }
+    ]
+  }
+}
