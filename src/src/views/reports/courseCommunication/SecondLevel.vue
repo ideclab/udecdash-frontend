@@ -9,8 +9,8 @@
         </v-col>
         <v-spacer></v-spacer>
         <v-col cols="12" sm="2" class="d-flex justify-center justify-sm-end ">
-          <help :report="{name:'course_communication', level:'first'}" />
-          <download :report="{name:'course_communication', level:'second'}" :data="students" :title="title" />
+          <help :report="{name:'course_communication', level:'first',log_level:'second_level'}" />
+          <download :report="{name:'course_communication', level:'second',log_level:'second_level'}" :data="students" :title="title" />
         </v-col>
       </v-row>
     <div class="report_table">

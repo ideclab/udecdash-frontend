@@ -27,8 +27,8 @@
         </v-col>
         <v-spacer></v-spacer>
         <v-col cols="12" sm="4" class="d-flex justify-center justify-md-end">
-          <help :report="{name:'course_interaction', level:'second'}" />
-          <download class="ml-2" :report="{name:'course_interaction', level:'second'}" :data="current_month" />
+         <help :report="{name:'course_interaction', level:'first',log_level:'first_level'}" />
+          <download class="ml-2" :report="{name:'course_interaction', level:'second',log_level:'second_level'}" :data="current_month" />
         </v-col>
       </v-row>
       <template v-if="loader_calendar">

@@ -13,8 +13,8 @@
     <div class="text-center">
       <v-img :src="require('@/assets/img/logo.png')" class="logo mx-auto" />
       <h3 class="text-center pb-5 login--text">
-        <b>¡</b>Bienvenido a <b>UDECDASH!</b>, una
-        plataforma <br />para visualizar reportes relacionados con Canvas LMS
+        <b>¡</b>Bienvenidos/as a <b>UDECDASH!</b> <br/>Una
+        plataforma para visualizar reportes relacionados con Canvas LMS
       </h3>
       <v-btn @click="login" outlined dark rounded>
         <v-icon left class="mr-4 icon-account" large>mdi-account</v-icon>
@@ -53,6 +53,7 @@ export default {
       }
     },
     initLogin() {
+      if(localStorage.error_code){
       if(localStorage.error_code != 'null' & localStorage.error_code != '200' ){
         switch (localStorage.error_code) {
           case '401':
@@ -81,7 +82,7 @@ export default {
         }
         this.alert = true;
         localStorage.setItem("error_code", null);
-      }
+      }}
     },
     login() {
       let url = `${this.$CANVAS_LOGIN_URL}auth?client_id=${this.$CLIENT_ID}&response_type=code&redirect_uri=${this.$URL_BACKEND}/canvas/check_permission`;

@@ -1,31 +1,34 @@
 <template>
-  <v-carousel-item class="overflow_carousel">
-    <v-sheet height="100%" tile   rounded class="py-3 px-3">
-      <v-row no-gutters  justify="center">
-        <v-col cols="12">
-          <v-img :src="require('@/assets/img/Logo_azul.svg')" class="logo mx-auto" />
+  <v-carousel-item >
+    <v-sheet tile   rounded class="py-3 px-3">
+      <v-row no-gutters  justify="center" align="center" class="full-height">
+      <v-col cols="12" >
+          <v-img :src="require('@/assets/img/Logo_azul.svg')" class="logo mx-auto " />
         </v-col>
         <v-col cols="12" md="11" class="py-3">
           <v-divider></v-divider>
         </v-col>
-        <v-col cols="12" md="8"  justify="center">
+        <v-col cols="12" md="5">
+          <v-img :src="require('@/assets/img/computer_course_list.png')" class="computer_logo mx-auto d-none d-md-flex" />
+        </v-col>
+        <v-col cols="12" md="6"  justify="center"  class="pl-3 pt-5">
             <p class="gray--text">
-              Los cursos están representados por una tarjeta en donde se podrán visualizar
-               las especificaciones de tus cursos, Estas tarjetas poseen
-               diferentes colores los cuales reflejan el estado del curso dentro del dashboard 
+              Los cursos están representados por una tarjeta en donde se pueden visualizar las 
+              especificaciones de los cursos. Estas tarjetas poseen
+               diferentes colores que reflejan el estado de un curso dentro del tablero o dashboard. 
             </p>
            
               <p class="gray--text my-1">
-              - <v-icon  size="20" color="#878787">mdi-checkbox-blank-circle</v-icon> El curso nunca ha sido actualizado por ende se necesita una primera actualización la cual se realiza presionando el botón <strong>Actualizar</strong>
+              - <v-icon  size="20" color="#878787">mdi-checkbox-blank-circle</v-icon> Este curso nunca ha sido actualizado. Presiona el botón: <strong>Actualizar</strong>.
             </p>
                    <p class="gray--text my-1">
-              - <v-icon  size="20" color="#d8ab3a">mdi-checkbox-blank-circle</v-icon> El curso se encuentra actualizando
+              - <v-icon  size="20" color="#d8ab3a">mdi-checkbox-blank-circle</v-icon> El curso se encuentra actualizando.
             </p>
               <p class="gray--text my-1">
-              - <v-icon  size="20" color="#3bbad2">mdi-checkbox-blank-circle</v-icon> El curso ya esta disponible
+              - <v-icon  size="20" color="#3bbad2">mdi-checkbox-blank-circle</v-icon> El curso ya esta disponible.
             </p>
               <p class="gray--text my-1">
-              - <v-icon  size="20" color="#db4056">mdi-checkbox-blank-circle</v-icon> Ha ocurrido un error
+              - <v-icon  size="20" color="#db4056">mdi-checkbox-blank-circle</v-icon> Ha ocurrido un error.
             </p>
         </v-col>
 
@@ -57,7 +60,9 @@
     }
 </style>
 <style lang="scss" scoped>
-
+.full-height{
+  height:75%;
+}
 .overflow_carousel{
   overflow-y: auto;
 }
@@ -69,7 +74,11 @@ hr {
     color:#706e6e;
 }
 .logo {
-  max-width: 15rem;
+  max-width: 16rem;
+  max-height: 60px;
+}
+.computer_logo{
+   max-width: 15rem;
 }
 .course_card {
   border-radius: 20px;

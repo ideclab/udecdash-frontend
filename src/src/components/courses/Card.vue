@@ -3,18 +3,20 @@
     <div class="d-flex flex-column">
       <card-details :details="course.udec_format"></card-details>
       <div class="d-flex justify-center align-center name_container">
-        <h4 class="title_course mx-2" v-text="course.udec_format.name"></h4>
+        <h4 class="title_course mx-2" v-text="current_name"></h4>
       </div>
-      <v-divider :color="current_color"></v-divider>
+      <v-divider :color="current_color" :class="status"></v-divider>
       <div class="d-flex flex-row justify-center pt-3 pb-1 actualization">
         <v-icon class="mr-1" :class="status" :color="current_color">{{current_icon}}</v-icon>
         <i><p class="mb-0">{{ current_text }}</p></i>
-        <i><p class="mb-0" v-html="formatDate(course.update.finished_at)"></p></i>
+        <template v-if="status=='FINISHED'">
+        <i><p class=" pl-1 mb-0" v-html="getFormatedDate(course.update.finished_at)"></p></i>            
+        </template>
       </div>
       <v-row no-gutters justify="center" class="interaction">
         <v-spacer></v-spacer>
         <v-col cols="5" sm="5" md="5" lg="4" class="upgrade">
-         <upgrade :name="course.udec_format.name" :status="status" @update="updateCourse($event)" />
+         <upgrade :name="current_name" :status="status" @update="updateCourse($event)" />
         </v-col>
         <v-spacer></v-spacer>
         <v-col cols="5" sm="5" md="5" lg="4" class="go">
@@ -36,7 +38,7 @@ import Log from "@/models/log";
 import Webservice from "@/models/webservice";
 import CardDetails from "@/components/courses/CardDetails.vue";
 import Upgrade from "@/components/modals/Upgrade.vue";
-
+import DateFormatter from '@/models/DateFormatter'
 export default {
   components: { CardDetails,Upgrade },
   name: "CourseCard",
@@ -81,13 +83,14 @@ export default {
             this.current_button = "rgba(59, 186, 210, .5)";
             this.current_icon = "fas fa-sync-alt";
             this.current_text = "Actualización en curso ...";
-            this.status = "PENDING";
-          }
+        this.class_button_activo = "disable";
+            this.status = "PENDING";          }
         } else {
           this.current_color = "#db4056";
           this.class_button_activo = "";
           this.current_icon = "mdi-alert-circle-outline";
           this.current_text = "La actualización ha fallado";
+        this.class_button_activo = "disable";
           this.status = "FAILED";
         }
       });
@@ -95,22 +98,21 @@ export default {
     },
     initData() {
       this.status = this.course.update.status;
-
       if (this.status == "NEVER_UPDATED") {
         this.current_color = "#878787";
-        this.class_button_activo = "";
+        this.class_button_activo = "disable";
         this.current_icon = "mdi-update";
-        this.current_text = "Actualización pendiente";
+        this.current_text = "Requiere actualizar la información";
       }
       if (this.status == "PENDING" ) {
         this.current_color = "#d8ab3a";
-        this.class_button_activo = "active";
+        this.class_button_activo = "disable";
         this.current_icon = "fas fa-sync-alt";
         this.current_text = "Actualización en curso ...";
       }
       if (this.status == "FAILED") {
         this.current_color = "#db4056";
-        this.class_button_activo = "";
+        this.class_button_activo = "disable";
         this.current_icon = "mdi-alert-circle-outline";
         this.current_text = "La actualización ha fallado";
       }
@@ -120,9 +122,19 @@ export default {
         this.current_icon = "mdi-update";
         this.current_text = "Actualizado: ";
       }
+      this.currentName()
+    },
+    currentName(){
+      let name = 'Nombre no encontrado'
+      if(this.course.udec_format.name !=''){
+        name =this.course.udec_format.name
+      }else if(this.course.course_name !=''){
+        name =this.course.course_name
+      }
+      this.current_name = name
     },
     goToReports(course_id) {
-    if(this.status == 'FINISHED' || this.status == 'PENDING'){
+    if(this.status == 'FINISHED' ){
        this.$Session.updateActivity();
       let log = new Log(course_id);
       log.disable();
@@ -134,34 +146,15 @@ export default {
       }
      
     },
-    formatDate(date) {
-      if (date != null) {
-        let newDate = new Date(date);
-        let day =
-          newDate.getDate().toString().length > 1
-            ? newDate.getDate()
-            : "0" + newDate.getDate().toString();
-        let month = newDate.getMonth() + 1;
-
-        let year = newDate.getFullYear();
-        let hour =
-          newDate.getHours().toString().length > 1
-            ? newDate.getHours()
-            : "0" + newDate.getHours().toString();
-        let minute =
-          newDate.getMinutes().toString().length > 1
-            ? newDate.getMinutes()
-            : "0" + newDate.getMinutes().toString();
-        return ` <b> ${day} de ${this.moths[month]}, ${year}</b> - ${hour}:${minute}`;
-      } else {
-        return "";
-      }
+    getFormatedDate(date){
+      let date_formatter = new DateFormatter(date)
+      return date_formatter.friendly_no_time('- -', 'bold')
     },
   },
-
   data: () => ({
     value: 1,
     update:false,
+    current_name:'',
     create_at:'',
     status: "not_updated",
     current_color: "#878787",
@@ -207,6 +200,18 @@ export default {
   hr {
     width: 100%;
     border-width: 2px;
+   &.PENDING{
+  background: #d8ab3a;
+    }
+  &.NEVER_UPDATED{
+  background:#878787 ;
+  }
+    &.FAILED{
+  background: #db4056;
+  }
+  &.FINISHED{
+    background:#3bbad2;
+    }
   }
   .name_container {
     padding: 5px;
@@ -256,6 +261,9 @@ export default {
       .v-btn {
         border: 2px solid rgba(59, 186, 210, 0.3);
         color: rgba(59, 186, 210, 0.3);
+        &.disable {
+          cursor: default;
+        }
         &.active {
           border: 2px solid rgba(59, 186, 210, 1);
           color: rgba(59, 186, 210, 1);

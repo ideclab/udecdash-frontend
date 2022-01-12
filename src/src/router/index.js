@@ -48,9 +48,7 @@ const routes = [
       } else {
         delete localStorage.udecdash_token;
         delete localStorage.udecdash_user;
-        if(localStorage.error_code == null){
-          localStorage.setItem("error_code", 401);
-        }
+    
         next("login");
       }
     }
@@ -378,52 +376,52 @@ const routes = [
         ]
       },
       {
-        path: "evaluation_panic",
+        path: "evaluation_analysis",
         component: EvaluationPanicBase,
         children: [
           {
             path: "/",
             component: EvaluationPanicFirst,
-            name: "evaluation_panic_first",
+            name: "evaluation_analysis_first",
             meta: {
-              breadcrumb: [{ name: "Pánico de evaluación",abr: "Pánico de evaluación", value: "evaluation_panic" }]
+              breadcrumb: [{ name: "Análisis de evaluación",abr: "Análisis de evaluación", value: "evaluation_analysis" }]
             }
           },
           {
-            path: "evaluation_panic/:resource_id/:type/:date",
+            path: ":resource_id/:type/:date",
             component: EvaluationPanicSecond,
-            name: "evaluation_panic_second",
+            name: "evaluation_analysis_second",
             meta: {
               breadcrumb: [
                 {
-                  name: "Pánico de evaluación",
-                  abr:"Pe",
-                  link: "evaluation_panic_first",
-                  value: "evaluation_panic"
+                  name: "Análisis de evaluación",
+                  abr:"Ae",
+                  link: "evaluation_analysis_first",
+                  value: "evaluation_analysis"
                 },
-                { name: "Recursos",abr:"Recursos", value: "evaluation_panic" }
+                { name: "Recursos",abr:"Recursos", value: "evaluation_analysis" }
               ]
             }
           },
           {
-            path: "evaluation_panic/:resource_id/:type/:date/:resource_detail",
+            path: ":resource_id/:type/:date/:resource_detail",
             component: EvaluationPanicThird,
-            name: "evaluation_panic_third",
+            name: "evaluation_analysis_third",
             meta: {
               breadcrumb: [
                 {
-                  name: "Pánico de evaluación",
-                  abr:"Pe",
-                  link: "evaluation_panic_first",
-                  value: "evaluation_panic"
+                  name: "Análisis de evaluación",
+                  abr:"Ae",
+                  link: "evaluation_analysis_first",
+                  value: "evaluation_analysis"
                 },
                 {
                   name: "Recursos",
                   abr:"Recursos",
-                  link: "evaluation_panic_second",
-                  value: "evaluation_panic"
+                  link: "evaluation_analysis_second",
+                  value: "evaluation_analysis"
                 },
-                { name: "Estudiantes", abr:"Estudiantes",value: "evaluation_panic" }
+                { name: "Estudiantes", abr:"Estudiantes",value: "evaluation_analysis" }
               ]
             }
           }

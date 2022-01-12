@@ -5,7 +5,6 @@
         <v-row no-gutters>
           <v-col cols="12">
             <v-carousel
-            height="650"
               class="max-height"
               hide-delimiter-background
               reverse-transition="fade-transition"

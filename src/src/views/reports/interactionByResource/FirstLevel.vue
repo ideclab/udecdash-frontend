@@ -8,15 +8,15 @@
         ></v-text-field>
       </v-col>
       <v-col cols="12" sm="4" md="4" order="3" order-sm="2"  class="d-flex justify-center ">
-        <v-select class="mt-0 pl-5 pl-sm-0 pr-md-10 select-order" :items="order" item-text="name" label="Ordenar recursos de modulos"
+        <v-select class="mt-0 pl-5 pl-sm-0 pr-md-10 select-order" :items="order" item-text="name" item-value="type" label="Ordenar recursos de modulos"
           @change="sortResources($event)" append-icon="mdi-chevron-down" background-color="#f6f6f6" color="#575756" :rounded="true"
           :dense="true" item-color="#575756" prepend-inner-icon="mdi-arrow-up-down-bold" :flat="true" :menu-props="{ contentClass: 'select-order-container' }"
         />
       </v-col>
       <v-col cols="12" sm="3" md="2"  order="2" class="d-flex justify-center justify-sm-end">
-        <help :report="{ name: 'interaction_by_resource', level: 'first' }" />
+        <help :report="{ name: 'interaction_by_resource', level: 'first',log_level:'first_level' }" />
         <download
-          :report="{ name: 'interaction_by_resource', level: 'first' }"
+          :report="{ name: 'interaction_by_resource', level: 'first',log_level:'first_level' }"
           :data="interaction_by_resource"
         />
       </v-col>
@@ -120,7 +120,7 @@ export default {
 
     sortResources(status) {
       this.order_status = status;
-      if (status == "ascendente") {
+      if (status == "Ascendente") {
         this.interaction_by_resource.forEach((e) => {
           e["search_resources"].sort(
             (a, b) => a.viewed_resources_count - b.viewed_resources_count
@@ -159,7 +159,7 @@ export default {
     order_status: "Normal",
     key_resources: 0,
     no_problem: true,
-    order: ["Normal", "Descendente", "ascendente"],
+    order: [{type:"Normal", name:"Normal"},{type:"Descendente",name:"Más a menos visto"},{type:"Ascendente",name:"Menos visto a más visto"}],
     status: "",
     message_no_date:"",
     current_section: null,

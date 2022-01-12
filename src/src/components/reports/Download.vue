@@ -7,6 +7,7 @@
 <script>
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
+import Log from "@/models/log";
 import "jspdf-autotable";
 export default {
   props: {
@@ -15,6 +16,7 @@ export default {
       default: () => ({
         name: "report",
         level: "first",
+        log_level:'first_level'
       }),
     },
     data: {
@@ -42,6 +44,8 @@ export default {
   }),
   methods: {
     exportPDF() {
+      this.createLog()
+      this.$Session.updateActivity();
       switch (this.report["name"]) {
         case "module_visualization":
           this.moduleVisualization();
@@ -71,6 +75,14 @@ export default {
         default:
           break;
       }
+    },
+      createLog(){
+     let log = new Log(this.$route.params.course_id);
+      log.setReport(this.report['name']);
+      log.setContext('download');
+      log.setDeep(this.report['log_level']);
+      log.add();
+      log.enable();
     },
     moduleVisualization() {
       let level = this.report["level"];

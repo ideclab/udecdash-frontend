@@ -6,7 +6,7 @@
     </template>
     <template v-slot:[`item.name`]="{ item }">
       <div class="d-flex items-center">
-        <item-state :state="item.workflow_state" />
+        <item-state :state="item.workflow_state" type="Recurso"/>
         <div v-text="item.name"></div>
       </div>
     </template>

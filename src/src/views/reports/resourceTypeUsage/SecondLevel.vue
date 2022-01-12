@@ -16,9 +16,9 @@
         </v-col>
         <v-spacer></v-spacer>
         <v-col cols="12" sm="2" class="d-flex justify-center justify-sm-end ">
-          <help :report="{ name: 'resource_type_usage', level: 'first' }" />
+          <help :report="{ name: 'resource_type_usage', level: 'first' ,log_level:'second_level'}" />
           <download
-            :report="{ name: 'resource_type_usage', level: 'second' }"
+            :report="{ name: 'resource_type_usage', level: 'second',log_level:'second_level' }"
             :data="resources"
             :title="transformSpanishName(type)"
           />

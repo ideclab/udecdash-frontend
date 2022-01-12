@@ -1,7 +1,6 @@
 <template>
   <v-container fill-height align="center" justify="center">
     <v-row align="center" justify="center" no-gutters>
-     
       <v-col align="center" cols="12">
         <span class=" message " v-html="information['message']">
         </span>
@@ -42,15 +41,12 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.lato {
- 
-}
+
 .imf{
     color: red;
 }
 .back{
   font-size: 1rem;
-    text-transform: capitalize;
     font-family: "OpenSans", "Lato", "Roboto";
     font-weight: bold;
       color: #38b9d1;
@@ -58,7 +54,7 @@ export default {
     
 }
 .message{
-      text-transform: capitalize;
+      // text-transform: capitalize;
     font-family: Lato, "Roboto", "sans-serif" !important;
     font-weight: bold;
       color:#575655;

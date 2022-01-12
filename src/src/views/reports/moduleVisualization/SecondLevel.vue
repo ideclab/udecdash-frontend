@@ -15,9 +15,9 @@
         </v-col>
         <v-spacer></v-spacer>
         <v-col cols="12" sm="2" class="d-flex justify-center justify-sm-end ">
-          <help :report="{ name: 'module_visualization', level: 'first' }" />
+          <help :report="{ name: 'module_visualization', level: 'first',log_level:'second_level' }" />
 
-          <download :report="{name:'module_visualization', level:'second'}" :data="module_visualization['members']" 
+          <download :report="{name:'module_visualization', level:'second',log_level:'second_level'}" :data="module_visualization['members']" 
           :title="title" />
         </v-col>
       </v-row>

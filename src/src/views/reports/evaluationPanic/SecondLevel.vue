@@ -11,8 +11,8 @@
         </v-col>
         <v-spacer></v-spacer>
         <v-col cols="12" sm="2" class="d-flex justify-center justify-sm-end ">
-          <help :report="{ name: 'evaluation_panic', level: 'first' }" />
-          <download :report="{name:'evaluation_panic', level:'second'}" :data="resources" 
+          <help :report="{ name: 'evaluation_panic', level: 'first',log_level:'second_level' }" />
+          <download :report="{name:'evaluation_panic', level:'second',log_level:'second_level'}" :data="resources" 
           :title="name_resource" />
         </v-col>
       </v-row>
@@ -39,7 +39,7 @@
           <template v-slot:[`item.view`]="{ item }">
              <navigation-button 
           :NavigationRoute="{ 
-            name: 'evaluation_panic_third', 
+            name: 'evaluation_analysis_third', 
             params: {
                   resource: resource_id,
                   type: type,

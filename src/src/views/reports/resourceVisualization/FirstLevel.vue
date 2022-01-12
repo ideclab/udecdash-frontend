@@ -18,9 +18,9 @@
           </v-chip>
         </v-col>
         <v-col cols="12" sm="5" md="2"  order="2" class="d-flex justify-center justify-sm-end  py-2 py-sm-3">
-          <help :report="{ name: 'resource_visualization', level: 'first' }" />
+          <help :report="{ name: 'resource_visualization', level: 'first',log_level:'first_level' }" />
           <download
-            :report="{ name: 'resource_visualization', level: 'first' }"
+            :report="{ name: 'resource_visualization', level: 'first',log_level:'first_level' }"
             :data="resources"
           />
         </v-col>

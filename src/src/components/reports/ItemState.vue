@@ -12,7 +12,7 @@
           </div>
           </div>
         </template>
-        <span>Este {{type}}<br/> está habilitado</span>
+        <span>{{type}}<br/> publicado</span>
       </v-tooltip>
     </template>
     <template v-else>
@@ -26,7 +26,7 @@
           <div class="mr-3 d-none d-sm-flex resource_status_color gray-border"></div>
           </div>
         </template>
-        <span>Este {{type}} <br/> no está habilitado</span>
+        <span>{{type}} <br/> no publicado</span>
       </v-tooltip>
     </template>
   </div>

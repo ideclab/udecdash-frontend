@@ -1,33 +1,43 @@
 {
     
     "1":{
-        "prefix":"Mensaje estandar",
-        "subject":"Acceso a plataforma",
-        "body":"Estimado[estudiante],\nEspero que este bien \n\n atte. su profesor \n[profesor]"
+        "prefix":"Nuevos recursos",
+        "subject":"He añadido nuevos recursos al aula virtual",
+        "body":"Estimado[estudiante],\nAgregué material nuevo para continuar con tu aprendizaje, ingresa a la plataforma y revisa las novedades que están disponibles para ti.\natte,\n[profesor] \n\nEnviado desde el curso [curso]"
     },
     "2":{
-        "prefix":"Saludos",
-        "subject":"Bienvenidos a mi curso",
-        "body":"Estimado[estudiante]\nEspero que este bien, gracias por inscribirse a mi curso\n\n atte. su profesor \n[profesor]"
+        "prefix":"Reconocimiento de acceso",
+        "subject":"Gracias por tu constancia…",
+        "body":"Estimado[estudiante],\nGracias por visualizar el aula de este curso, la he preparado para ti, espero sea de tú interés y quedo atento a lo que necesites.\natte,\n[profesor] \n\nEnviado desde el curso [curso]"
     },
     "3":{
-        "prefix":"Agradecimientos",
-        "subject":"Mensaje de agradecimiento",
-        "body":"Estimado[estudiante]\nEste es un mensaje de agradecimiento \n\n atte. [profesor]"
+        "prefix":"Motivación",
+        "subject":"¿Sabías qué…?",
+        "body":"Estimado[estudiante],\nLos y las estudiantes que revisan regularmente el aula virtual muestran mejores aprendizajes, ya eres uno de ellos/as!\natte,\n[profesor] \n\nEnviado desde el curso [curso]"
     },
     "4":{
-        "prefix":"motivacion",
-        "subject":"Mensaje de motivacion",
-        "body":"Estimado[estudiante]\nEste es un mensaje de motivacion\n\n atte.\n [profesor]"
+        "prefix":"Solicitar acceso",
+        "subject":"Es hora de retomar el aula virtual",
+        "body":"Estimado[estudiante],\n¡Hola! Me he dado cuenta que no has accedido a nuestra aula virtual. Te invito a revisarla, he dejado en ella material y actividades que te serán de utilidad.\natte,\n[profesor] \n\nEnviado desde el curso [curso]"
     },
     "5":{
-        "prefix":"Problemas de acceso",
-        "subject":"Mensaje por problemas de acceso",
-        "body":"Estimado[estudiante]\nEste es un mensaje para preguntar por problemas de acceso\n\n atte.\n [profesor]"
+        "prefix":"Motivación de acceso",
+        "subject":"¿Sabías qué…?",
+        "body":"Estimado[estudiante],\nLos y las estudiantes que revisan regularmente el aula virtual muestran mejores aprendizajes, sé uno de ellos o ellas y utiliza los materiales del aula que he preparado para ti y tus compañeros/as.\natte,\n[profesor] \n\nEnviado desde el curso [curso]"
     },
     "6":{
-        "prefix":"Motivacion",
-        "subject":"Mensaje de motivacion",
-        "body":"Estimado[estudiante]\nEste es un mensaje de motivacion\n\n atte.\n [profesor]"
+        "prefix":"Agradecimiento",
+        "subject":"Continua así…",
+        "body":"Hola [estudiante],\nSigue revisando el aula virtual seguro te ayudará a tener mayor éxito en este curso, gracias por valorar lo que he preparado para ti.\natte,\n[profesor] \n\nEnviado desde el curso [curso]"
+    },
+    "7":{
+        "prefix":"Reconocimiento y disposición",
+        "subject":"¡Vas muy bien!",
+        "body":"Hola [estudiante],\nVeo que has ingresado seguido al aula virtual, sigue interactuando con los materiales y pronto verás mejoras. Recuerda que ante una duda puedes escribirme en todo momento, estoy acá para ayudarte.\natte,\n[profesor] \n\nEnviado desde el curso [curso]"
+    },
+    "8":{
+        "prefix":"Motivación",
+        "subject":"El aula virtual te espera…",
+        "body":"Hola [estudiante],\nHe trabajado en el aula virtual del curso, espero verte pronto ahí, los materiales y actividades las he pensado para que puedas aprender más y mejor, cualquier duda o comentarios no dudes en escribirme…\natte,\n[profesor] \n\nEnviado desde el curso [curso]"
     }
 }

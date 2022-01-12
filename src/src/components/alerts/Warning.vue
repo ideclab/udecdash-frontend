@@ -50,7 +50,6 @@ export default {
     
 }
 .message{
-      text-transform: capitalize;
     font-family: "OpenSans", "Lato", "Roboto";
     font-weight: bold;
   font-size: 1rem;

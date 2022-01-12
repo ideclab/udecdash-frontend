@@ -1,18 +1,20 @@
 <template>
   <v-carousel-item>
-    <v-sheet height="100%" tile   rounded class="py-3 px-3">
-      <v-row no-gutters align="center" justify="center">
-        <v-col cols="12">
-          <v-img :src="require('@/assets/img/Logo_azul.svg')" class="logo mx-auto" />
+    <v-sheet  tile   rounded class="py-3 px-3">
+      <v-row no-gutters justify="center" class="full-height" >
+          <v-col cols="12" >
+          <v-img :src="require('@/assets/img/Logo_azul.svg')" class="logo mx-auto " />
         </v-col>
-        <v-col cols="12" md="11" class="py-3">
+        <v-col cols="12" md="11" class="py-3 pb-10">
           <v-divider></v-divider>
         </v-col>
-        <v-col cols="11" md="8">
+        <v-col cols="12" md="5">
+          <v-img :src="require('@/assets/img/computer_show_report.png')" class="computer_logo mx-auto d-none d-md-flex" />
+        </v-col>
+        <v-col cols="12" md="6"  align="center"  >
             <p class="gray--text">
-              Los reportes están conformados con diferentes niveles de granularidad, 
-              comenzando con una vista general del grupo de curso seleccionado hasta llegar al detalle de cada estudiante y/o recursos (dependiendo del reporte), todo con una cantidad ínfima 
-              de clic y profundizando siempre contextualmente en la información según sus necesidades.
+              Los reportes están conformados con diferentes niveles de granularidad. Comienzan con una vista general del grupo de curso seleccionado, hasta llegar al detalle de cada estudiante y/o recursos (dependiendo del reporte), todo con una cantidad ínfima de
+               clics y un nivel de profundización contextual en la información según tus necesidades.
             </p>
         </v-col>
       </v-row>
@@ -26,6 +28,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.full-height{
+  height:75%;
+}
 hr {
   border: 1px solid #f49e16;
   background: #f49e16;
@@ -34,7 +39,11 @@ hr {
     color:#706e6e;
 }
 .logo {
-  max-width: 15rem;
+  max-width: 16rem;
+  max-height: 60px;
+}
+.computer_logo{
+   max-width: 15rem;
 }
 .course_card {
   border-radius: 20px;

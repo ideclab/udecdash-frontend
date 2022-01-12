@@ -130,7 +130,7 @@
          return this.mode == 'same_day'
        },
        goToSecondLevel(day){
-        this.$router.push({ name: 'evaluation_panic_second',
+        this.$router.push({ name: 'evaluation_analysis_second',
         params:{resource_id:this.quizId,type:day.viewed,date:day.date,details:day.content} })
        }
      }

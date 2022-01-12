@@ -123,7 +123,15 @@ export default class Webservice {
       }
     })
   }
-
+  suggestions(data) {
+    let url = `${this.baseURL()}/account/send_report`
+    let token = this.token()
+    return axios.post(url,data, {
+      headers: {
+        Authorization: 'Bearer ' + token
+      }
+    })
+  }
   checkAnswer({ status, data = [] }) {
     if (status == 200) {
       return {

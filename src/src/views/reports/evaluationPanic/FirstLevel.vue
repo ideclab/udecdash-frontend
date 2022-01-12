@@ -8,8 +8,8 @@
     </v-col>
     <v-spacer></v-spacer>
     <v-col cols="12" sm="2" class="d-flex justify-center justify-sm-end ">
-      <help :report="{name:'evaluation_panic', level:'first'}" />
-      <download :report="{name:'evaluation_panic', level:'first'}" :data="data" />
+      <help :report="{name:'evaluation_panic', level:'first',log_level:'first_level'}" />
+      <download :report="{name:'evaluation_panic', level:'first',log_level:'first_level'}" :data="data" />
     </v-col>
   </v-row>
   <template v-for="item in data">

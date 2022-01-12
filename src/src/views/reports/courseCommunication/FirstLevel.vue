@@ -3,8 +3,8 @@
     <v-row>
       <v-spacer></v-spacer>
       <v-col cols="12" sm="2" class="d-flex justify-center justify-sm-end ">
-        <help :report="{name:'course_communication', level:'first'}" />
-        <download :report="{name:'course_communication', level:'first'}" 
+        <help :report="{name:'course_communication', level:'first',log_level:'first_level'}" />
+        <download :report="{name:'course_communication', level:'first',log_level:'first_level'}" 
         :data="{'information':information,'member_count_discussion':member_count_discussion,'member_count_message':member_count_message}" />
       </v-col>
     </v-row>
@@ -15,7 +15,7 @@
             <div class="d-flex flex-column align-center align-center justify-center">
               <v-progress-circular :rotate="-90" :size="70"
                 :width="6" :value="information['discussion_entry_percentage']" color="#f69f19">
-              <span class="black--text">{{ information["discussion_entry_percentage"] }}</span>  
+              <span class="black--text">{{ information["discussion_entry_percentage"] }} %</span>  
               </v-progress-circular>
               <span class="card_title pt-1 pb-3"> Foros no evaluados </span>
             </div>
@@ -59,7 +59,7 @@
             <div class="d-flex flex-column align-center align-center justify-center">
               <v-progress-circular :rotate="-90" :size="70"
                 :width="6" :value="information['mail_messages_percentage']" color="#f69f19">
-                 <span class="black--text">{{ information["mail_messages_percentage"] }} </span>
+                 <span class="black--text">{{ information["mail_messages_percentage"] }} %</span>
               </v-progress-circular>
               <span class="card_title pt-1 pb-3"> Bandeja de entrada </span>
             </div>

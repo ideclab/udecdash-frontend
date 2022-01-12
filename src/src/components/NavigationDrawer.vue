@@ -126,7 +126,7 @@ export default {
       {
         route: 'module_visualization_first',
         name: 'module_visualization',
-        title: 'Visualización por modulo'
+        title: 'Visualización por módulo'
       },
       {
         route: 'resource_type_usage_first',
@@ -154,9 +154,9 @@ export default {
         title: 'Comunicación del curso'
       },
       {
-        route: 'evaluation_panic_first',
-        name: 'evaluation_panic',
-        title: 'Pánico de evaluación'
+        route: 'evaluation_analysis_first',
+        name: 'evaluation_analysis',
+        title: 'Análisis de evaluación'
       },
       {
         route: 'course_interaction_first',

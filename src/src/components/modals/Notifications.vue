@@ -14,6 +14,10 @@
                   :rules="rules['recipients']"
                   class="student_container"
                   chips
+                  item-color="#f49f13"
+                  dense
+                   :menu-props="{ contentClass: 'autocomplete_student' }"
+
                   color="#c5c5c5"
                   label="Estudiantes"
                   item-text="name"
@@ -60,8 +64,7 @@
               </v-col>
               <v-col cols="12" class="py-0">
                 <v-textarea
-                class="subject"
-
+                  class="subject"
                   outlined
                   name="input-7-4"
                   label="Ingresar mensaje"
@@ -163,12 +166,18 @@ export default {
       this.$emit("notification_status", false);
     },
     async send() {
+      let snackbar=''
       if (this.$refs.form.validate()) {
         this.$emit("notification_status", false);
         let data = JSON.parse(JSON.stringify(this.form));
         let webservice = new Webservice();
-        await webservice.notification(data).then(() => {
-          this.$emit("snackbar", true);
+        await webservice.notification(data).then((resp) => {
+          if(resp.status ==200){
+            snackbar = {status:true,message:' Su mensaje ha sido enviado exitosamente',color:'#2f9b40',icon:'mdi-check-circle-outline'}
+            }else{
+            snackbar = {status:true,message:'Su mensaje no ha podido ser enviado',color:'#db4056',icon:'mdi-close-circle-outline'}
+              }
+              this.$emit("snackbar", snackbar);
         });
         this.format();
         this.$refs.form.reset();
@@ -205,6 +214,28 @@ export default {
 </script>
 
 <style  lang="scss">
+.autocomplete_student{
+    border:2px solid #c5c5c5;
+
+  box-shadow:0 10px 12px 0px #888888;
+  .v-select-list{
+    border-radius: 10px !important;
+  }
+  .v-list--dense .v-list-item {
+    color: #575756 !important;
+    height: 40px !important;
+    height: auto;
+    font-weight: normal !important;
+    margin: 0;
+    overflow: hidden;
+    &:hover{
+      background: #DADADA !important;
+    }
+  }
+  .v-list-item--link:before{
+    background-color: transparent !important;
+  }
+}
 .student_container {
   max-height: 100px !important;
   overflow-x: hidden !important;

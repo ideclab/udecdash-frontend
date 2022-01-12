@@ -9,8 +9,8 @@
       </v-col>
       <v-spacer></v-spacer>
       <v-col cols="12" sm="2" class="d-flex justify-center justify-sm-end ">
-        <help :report="{name:'file_type_usage', level:'first'}" />
-        <download :report="{name:'file_type_usage', level:'first'}" :data="file_type_usage" />
+        <help :report="{name:'file_type_usage', level:'first',log_level:'first_level'}" />
+        <download :report="{name:'file_type_usage', level:'first',log_level:'first_level'}" :data="file_type_usage" />
       </v-col>
     </v-row>
         <v-data-table

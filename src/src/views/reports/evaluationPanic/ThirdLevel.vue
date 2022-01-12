@@ -11,8 +11,8 @@
         </v-col>
         <v-spacer></v-spacer>
         <v-col cols="12" sm="2" class="d-flex justify-center justify-sm-end ">
-          <help :report="{ name: 'evaluation_panic', level: 'first' }" />
-          <download :report="{name:'evaluation_panic', level:'third'}" :data="viewed" 
+          <help :report="{ name: 'evaluation_panic', level: 'first',log_level:'third_level' }" />
+          <download :report="{name:'evaluation_panic', level:'third',log_level:'third_level'}" :data="viewed" 
           :title="title" />
         </v-col>
       </v-row>

@@ -16,7 +16,7 @@
               </v-col>
               <v-col cols="12" md="6" class="d-flex  justify-center justify-md-end help_notes_container ">
                 <span class="  d-flex flex-column flex-sm-row">
-                    <v-chip class="help_notes lato lato--regular mx-1 mb-2 mb-sm-0" > <span class="circle circle_gray "></span> No actualizando </v-chip>
+                    <v-chip class="help_notes lato lato--regular mx-1 mb-2 mb-sm-0" > <span class="circle circle_gray "></span> Sin actualización </v-chip>
                     <v-chip class="help_notes lato lato--regular mx-1 " > <span class="circle circle_yellow "></span>  Actualizando </v-chip>
                 </span>
                  <span class=" d-flex flex-column flex-sm-row">
@@ -45,7 +45,7 @@
     
     </template>
     <div class="message_container">
-    <v-snackbar v-model="update_notice['status']" :timeout="2000"  absolute right bottom>
+    <v-snackbar v-model="update_notice['status']" :timeout="4000"  absolute right top>
      <v-icon :class="update_notice['type']">
        {{this.update_notice['icon']}}
      </v-icon>
@@ -61,7 +61,12 @@
      </template>
     </v-snackbar>
     </div>
-
+    <div class="d-flex d-md-none" id="smallSuggestions">
+        <small-suggestions></small-suggestions>
+      </div>
+      <div class="d-none d-md-flex" id="desktopSuggestions">
+        <desktop-suggestions></desktop-suggestions>
+      </div>
   </div>
 </template>
 
@@ -72,16 +77,17 @@ import Webservice from "@/models/webservice";
 import Welcome from "@/components/modals/Welcome.vue";
 import WarningCourse from "@/components/courses/Warning.vue";
 import NoData from "@/components/alerts/NoData.vue";
-
+import SmallSuggestions from '@/components/others/SmallSuggestions.vue';
+import DesktopSuggestions from '@/components/others/DesktopSuggestions.vue';
 export default {
-  components: { CourseCard, AppBar, Welcome,WarningCourse,NoData },
+  components: { CourseCard, AppBar, Welcome,WarningCourse,NoData,SmallSuggestions,DesktopSuggestions},
   name: "CourseList",
   created() {
     this.webservice = new Webservice();
     this.initWelcome();
   },
   mounted() {
-    this.initSemesters();
+    this.semesterData();
     this.initTour();
     this.$Session.updateActivity();
   },
@@ -99,7 +105,7 @@ export default {
         this.update_notice['type'] = '_success'
         }
         if(data.information.code =="WAS_PROCESSED_RECENTLY"){
-            this.update_notice['message'] = `Su curso ya ha sido actualizado`
+            this.update_notice['message'] = `Solo puede actualizar el curso una vez cada 24 horas.`
             this.update_notice['icon'] = 'mdi-information-outline'
             this.update_notice['type'] = '_warning'
             
@@ -120,6 +126,10 @@ export default {
         this.update_notice['type'] = '_error'
       }
       this.update_notice['status']=true
+      if(!this.recursion_on){
+          this.recursion_on =true
+          this.semesterRecursive()
+          }
     },
     initWelcome() {
      if (!localStorage.udecdash_welcome) {
@@ -135,13 +145,14 @@ export default {
         this.key_welcome += 1;
       }
     },
-    initSemesters() {
+    semesterData() {
       this.webservice
         .courseList()
         .then(response => {
           if (!response.error) {
             this.semesters = response.information;
             this.filterSemester();
+            this.updateInProgress();
           } else {
             this.no_problem = false;
             this.warning["message"] = response.message;
@@ -151,7 +162,22 @@ export default {
         })
         .finally(() => {
           this.loader = false;
+            this.key_courses += 1;
         });
+    },
+    semesterRecursive(){
+      setInterval(()=>{
+        this.semesterData()
+      }, 30000);
+    },
+    updateInProgress(){
+    if(!this.recursion_on){
+      let data = this.courses.find(status=>status.update.status =='PENDING')
+      if(data){
+        this.recursion_on =true
+         this.semesterRecursive()
+      }
+    }
     },
     filterSemester() {
       if (!localStorage.udecdash_semester) {
@@ -165,9 +191,9 @@ export default {
     },
     updatingSemesters(event) {
       this.key_filter += 1;
-
       localStorage.setItem("udecdash_semester", event);
       this.filterSemester();
+      this.semesterData();
     },
     resetWelcome(){
        this.welcome_status = true;
@@ -176,13 +202,13 @@ export default {
     welcome(event){
     this.welcome_status = event
     this.webservice.set_tutorial({'identifier':'WELCOME_MESSAGE'})
-    console.log('si')
     }
   },
   data: () => ({
     loader: true,
     webservice:null,
     no_problem: true,
+    recursion_on:false,
     welcome_status: false,
     key_courses: 0,
     key_no_data: 0,
@@ -212,7 +238,7 @@ export default {
           item => item.course_name.toLowerCase().indexOf(value) !== -1
         );
         if(datas.length ==0){
-          this.no_data['message']=`Lo sentimos,<br /> No existen resultados para: <span class="color_yellow"> ${value} <span>`
+          this.no_data['message']=`Lo sentimos.<br /> No existen resultados para: <span class="color_yellow"> ${value} <span>`
           this.key_no_data +=1;
         }
         this.filtered_courses = datas;
@@ -227,6 +253,8 @@ export default {
   color:#f49e16;
 }
 .message_container{
+  .v-snack{
+    top:60px;
 .v-snack__wrapper{
   background: white ;
   border-radius: 15px;
@@ -237,12 +265,14 @@ export default {
   }
   .close{
     position: fixed;
-    bottom: 40px;
+    top: 60px;
     right: 3px;
     border-radius: 100%;
     background: white;
   }
 }
+  }
+
 }
 </style>
 <style lang="scss" scoped>

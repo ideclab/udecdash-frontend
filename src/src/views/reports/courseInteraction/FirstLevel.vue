@@ -22,15 +22,14 @@
                     <span class="label-selector pr-2 pt-2 ml-4">Año</span>
                     <v-select class="select" v-model="current_date['year']" :items="years"
                       @change="modifyDate('year', $event)" item-text="name" item-value="id"
-                      append-icon="mdi-chevron-down" background-color="white"
-                      color="#575756" rounded dense item-color="#575756"
-                      :menu-props="{contentClass: 'select-container'}">
+                      append-icon="mdi-chevron-down" background-color="white" color="#575756"
+                      rounded dense item-color="#575756" :menu-props="{contentClass: 'select-container'}">
                     </v-select>
                 </v-layout>
               </v-col>
               <v-col cols="12" sm="4" class="d-flex justify-center justify-md-end">
-                <help :report="{name:'course_interaction', level:'first'}" />
-                <download class="ml-2" :report="{name:'course_interaction', level:'first'}" :data="{'information':current_user_interactions,'month':current_date['month'],'year':current_date['year']}" />
+                <help :report="{name:'course_interaction', level:'first',log_level:'first_level'}" />
+                <download class="ml-2" :report="{name:'course_interaction', level:'first',log_level:'first_level'}" :data="{'information':current_user_interactions,'month':current_date['month'],'year':current_date['year']}" />
               </v-col>
             </v-row>
           </div>
@@ -42,7 +41,13 @@
             </router-link>
           </div>
           <div class="students_column py-5 px-6 px-sm-4">
-            <h4 class="page-title pb-2">Estudiantes</h4>
+              <div class="d-flex justify-space-between">
+                <span class="page-title pb-2">Estudiantes</span>
+              <div>
+                <span > <v-icon  class="user-status pa-1" color="#2f9b40"> mdi mdi-account-check-outline </v-icon>  <span>{{active_students}}</span>       </span>
+                <span ><v-icon  class="user-status pa-1" color="#d96b85"> mdi-account-cancel-outline</v-icon><span>{{inactive_students}}</span></span>
+              </div>
+             </div>
             <v-row no-gutters>
               <v-col col="12" md="6" class="pr-2">
                 <v-select class="select select-full-width" v-model="current_user_list" :items="filter_user"
@@ -60,9 +65,10 @@
             <v-text-field class="filter mb-4" color="#575756" v-model="filter" filled dense
               rounded prepend-inner-icon="mdi-magnify" label="Buscar" single-line
               hide-details></v-text-field>
+
             <v-list class="students-container">
               <v-list-item-group mandatory class="students-list-container" value="name"
-              v-model="current_student">
+              v-model="current_student" :key="update_current_student">
                 <v-list-item v-for="item in show_students" :key="item.canvas_id">
                   <v-list-item-content @click="currentUser(item)"
                   :class="['pa-0', {'user-active' : hasInteractions(item)}]">
@@ -75,7 +81,9 @@
             </v-list>
           </div>
           <template v-if="loader_calendar">
+            <div class="min-height">
                 <loading></loading>
+            </div>
           </template>
           <template v-else>
           <div class="calendar_column pb-5 px-6 px-sm-2 px-md-6 pt-0">
@@ -97,6 +105,21 @@
         @notification_status="notification_status = $event" :type_message="'students'" :notifications_id="predefined_notifications" :receptors="receptors"
       ></notification>
     </template>
+    <div class="course_interaction_snackbar">
+    <v-snackbar v-model="snackbar['status']"  absolute
+      :timeout="5000"   right top>
+      <v-icon :color="snackbar['color']" v-text="snackbar['icon']"></v-icon>
+        <span v-text="snackbar['message']"></span>
+          <template v-slot:action="{ attrs }">
+            <v-icon color="#706e6e" class="close"
+       v-bind="attrs"
+          @click="snackbar['status'] = false">
+        mdi-close-circle
+      </v-icon>
+          </template>
+    </v-snackbar>
+    </div>
+
   </div>
 </template>
 <style lang="scss" scoped>
@@ -111,6 +134,9 @@ a {
 }
 .img-width{
   width: 100% !important;
+}
+.min-height{
+  min-height: 430px;
 }
 .select-full-width{
   width: 100% !important;
@@ -241,6 +267,24 @@ a {
     cursor: default !important;
   }
 }
+.course_interaction_snackbar{
+.v-snack__wrapper{
+  background: white ;
+  border-radius: 15px;
+  border:3px #c5c5c5 solid;
+  color:#c5c5c5;
+  .v-snack__content{
+    padding: 0px 16px;
+  }
+  .close{
+    position: fixed;
+    top: 60px;
+    right: 3px;
+    border-radius: 100%;
+    background: white;
+  }
+}
+}
 </style>
 <script>
 import Webservice from '@/models/webservice'
@@ -322,14 +366,20 @@ export default {
     },
 
     setUser(information) {
+      let active_students =0
+      let inactive_students = 0
       this.students.map(student => {
         student['interaction'] = information.find(
           student_interaction =>
             student_interaction.canvas_id == student.canvas_id
         )
-        student['interaction'] = student['interaction']
-          ? student['interaction']['interactions']
-          : []
+        if( student['interaction']){
+          student['interaction'] = student['interaction']['interactions']
+          active_students++
+        }else{
+          student['interaction'] =[]
+          inactive_students++
+        }
       })
       this.current_user_interactions == null
         ? (this.current_user_interactions = this.students[0])
@@ -337,8 +387,10 @@ export default {
             student =>
               student.canvas_id == this.current_user_interactions.canvas_id
           ))
-      this.originalUsers = this.students
-      this.filterUsers()
+          this.active_students = active_students
+          this.inactive_students = inactive_students
+          this.originalUsers = this.students
+          this.filterUsers()
     },
     getDate() {
       let current_date = JSON.parse(localStorage.getItem('date'))
@@ -377,7 +429,7 @@ export default {
       if (!localStorage.getItem('date')) {
         localStorage.setItem(
           'date',
-          JSON.stringify({ year: date.getFullYear(), month: date.getMonth() })
+          JSON.stringify({ year: date.getFullYear(), month: (date.getMonth() + 1) })
         )
       }
       let current_date = JSON.parse(localStorage.getItem('date'))
@@ -387,17 +439,6 @@ export default {
     },
     currentUser(item) {
       this.current_user_interactions = item
-      this.updateRange()
-    },
-
-    processCurrentUser(item) {
-      this.students.map((estudent, index) => {
-        if (estudent.canvas_id == item) {
-          this.current_user_interactions = estudent
-          this.current_student = index
-        }
-      })
-      this.show_students = this.students
       this.updateRange()
     },
 
@@ -442,6 +483,11 @@ export default {
             item.name.toLowerCase().indexOf(this.search.toLowerCase()) !== -1
         )
       }
+
+      this.currentUser(this.show_students[0])
+      this.current_student =0
+      this.update_current_student++
+
     },
     filterUserByStatus(event) {
       this.current_user_list = event
@@ -453,21 +499,21 @@ export default {
         this.originalUsers.map(item => {
           this.receptors.push(item.canvas_id)
         })
-        this.predefined_notifications = [1, 2]
+        this.predefined_notifications = [1]
       } else if (current_user_list == 'Solo activos') {
         this.originalUsers.map(item => {
           if (item.interaction.length > 0) {
             this.receptors.push(item.canvas_id)
           }
         })
-        this.predefined_notifications = [3, 4]
+        this.predefined_notifications = [2,3]
       } else if (current_user_list == 'Solo inactivos') {
         this.originalUsers.map(item => {
           if (item.interaction.length == 0) {
             this.receptors.push(item.canvas_id)
           }
         })
-        this.predefined_notifications = [5, 6]
+        this.predefined_notifications = [4,5]
       }
       this.notification_status = true
     },
@@ -475,9 +521,9 @@ export default {
     this.receptors = []
     this.receptors.push(user)
     if(interactions){
-      this.predefined_notifications = [3, 4]
+      this.predefined_notifications = [6, 7]
     }else{
-      this.predefined_notifications = [5, 6]
+      this.predefined_notifications = [8]
     }
       this.notification_status = true
     },
@@ -502,10 +548,18 @@ export default {
     filter_user: ['Todos', 'Solo activos', 'Solo inactivos'],
     loader: true,
     loader_calendar:false,
-    snackbar: false,
+    snackbar:{
+      status:false,
+      icon:'',
+      color:'',
+      message:''
+    },
     predefined_notifications: [],
     receptors: [],
+    active_students:null,
+    inactive_students:null,
     search: '',
+    update_current_student:0,
     warning:[],
     notification_status: false,
     no_problem: true,

@@ -15,21 +15,14 @@
         </v-col>
         <v-spacer></v-spacer>
         <v-col cols="12" sm="2" class="d-flex justify-center justify-sm-end ">
-          <help :report="{name:'file_type_usage', level:'first'}" />
-          <download :report="{name:'file_type_usage', level:'third'}" :data="students" :title="title" />
+          <help :report="{name:'file_type_usage', level:'first',log_level:'third_level'}" />
+          <download :report="{name:'file_type_usage', level:'third',log_level:'third_level'}" :data="students" :title="title" />
         </v-col>
       </v-row>
       <template v-if="no_problem">
-          <v-data-table
-            :headers="headers"
-            :items="students"
-            item-key="member_canvas_id"
-            hide-default-footer
-            :items-per-page="-1"
-            :sort-by.sync="sort_by"
-            :sort-desc.sync="sort_desc"
-            :search="search"
-            justify="end"
+          <v-data-table :headers="headers"
+            :items="students" item-key="member_canvas_id" hide-default-footer :items-per-page="-1"
+            :sort-by.sync="sort_by" :sort-desc.sync="sort_desc" :search="search" justify="end"
           >
             <template v-slot:[`item.name`]="{ item }" justify="end">
                 <div v-text="item.name" ></div>

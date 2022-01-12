@@ -16,12 +16,12 @@ export default class Notification {
     filterBody(body,users){
         let student = '[estudiante]'
         let teacher = '[profesor]'
+        let course = '[curso]'
         let text =body
         if(users.length ==0){
             text = text.replace(student,' ')
-
         }
-        else if(users.length >1){
+        if(users.length >1){
         text = text.replace(student,'s estudiantes')
         }else{
          let  name= Vue.prototype.$SECTION.members.find(resp => resp.canvas_id == users[0]).name
@@ -29,6 +29,8 @@ export default class Notification {
         }
         let current_user = JSON.parse(localStorage.getItem('udecdash_user'))
         text = text.replace(teacher,current_user['name'])
+        let current_course = Vue.prototype.$COURSE.udec_format.name
+        text = text.replace(course,current_course.toLowerCase())
         return text
     }
 }

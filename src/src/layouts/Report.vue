@@ -17,7 +17,14 @@
           </template>
         </template>
       </v-layout>
+            <div class="d-flex d-md-none" id="smallSuggestions">
+        <small-suggestions></small-suggestions>
+      </div>
+      <div class="d-none d-md-flex" id="desktopSuggestions">
+        <desktop-suggestions></desktop-suggestions>
+      </div>
     </v-container>
+
   </v-container>
 </template>
 
@@ -25,7 +32,10 @@
 import Vue from "vue";
 import Webservice from "@/models/webservice";
 import InteractiveMenu from "@/assets/js/InteractiveMenu.json";
+import SmallSuggestions from '@/components/others/SmallSuggestions.vue';
+import DesktopSuggestions from '@/components/others/DesktopSuggestions.vue';
 export default {
+  components: { SmallSuggestions,DesktopSuggestions},
   name: "Report",
   created() {
     this.initBreadcrumbList();
@@ -49,6 +59,7 @@ export default {
       webservice
         .courseInformation(current_course)
         .then((response) => {
+          console.log(response)
           if (!response.error) {
             this.filterInformation(response.information);
           } else {
@@ -91,7 +102,7 @@ export default {
           (e) => e.canvas_id == sections_id
         );
       } else {
-        this.warning["message"] = "No existen secciones";
+        this.warning["message"] = "No existen secciones que posean estudiantes";
         this.warning["status"] = -1;
         this.warning["btn"] = "Ir a mis cursos"
         this.no_problem = false;

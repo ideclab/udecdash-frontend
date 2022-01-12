@@ -43,7 +43,6 @@ export default {
         
     },
         filterReportInformation(information) {
-          console.log(information)
        if (Object.entries(information).length != 0)  {
         this.evaluation_panic = information
       } else {

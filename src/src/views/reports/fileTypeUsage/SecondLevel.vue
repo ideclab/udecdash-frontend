@@ -4,23 +4,22 @@
       <loading></loading>
     </template>
     <template v-else>
-           <h4 v-text="type"
+    <h4 v-text="type"
        class="text-left text-uppercase pl-3 pb-3 text-truncate"
       ></h4>
       <template v-if="files.length>0">
-
-      <v-row>
-        <v-col cols="12" sm="6">
-          <v-text-field class=" filter" color="#575756" v-model="search"
-            filled dense rounded prepend-inner-icon="mdi-magnify"
-            label="Buscar" single-line hide-details></v-text-field>
-        </v-col>
-        <v-spacer></v-spacer>
-        <v-col cols="12" sm="2" class="d-flex justify-center justify-sm-end ">
-          <help :report="{ name: 'file_type_usage', level: 'first' }" />
-          <download :report="{ name: 'file_type_usage', level: 'second' }" :data="files" :title="type"/>
-        </v-col>
-      </v-row>
+        <v-row>
+          <v-col cols="12" sm="6">
+            <v-text-field class=" filter" color="#575756" v-model="search"
+              filled dense rounded prepend-inner-icon="mdi-magnify"
+              label="Buscar" single-line hide-details></v-text-field>
+          </v-col>
+          <v-spacer></v-spacer>
+          <v-col cols="12" sm="2" class="d-flex justify-center justify-sm-end ">
+            <help :report="{ name: 'file_type_usage', level: 'first' ,log_level:'second_level'}" />
+            <download :report="{ name: 'file_type_usage', level: 'second',log_level:'second_level' }" :data="files" :title="type"/>
+          </v-col>
+        </v-row>
         <v-data-table class="workflow_state_on has_depth" :headers="headers" :items="files"
           :search="search" item-key="new_canvas_id" :items-per-page="-1" hide-default-footer
         >
@@ -62,7 +61,7 @@
             />
           </template>
         </v-data-table>
-          </template >
+      </template >
         <template v-else>
           <no-data :information="{message:`El curso no posee ${type} `,btn:true}"></no-data>
         </template>
@@ -75,7 +74,7 @@ import Log from '@/models/log'
 import NoData from "@/components/alerts/NoData.vue";
 
 export default {
-  components: { NoData },
+  components: { NoData},
 
   props: ['information'],
   created() {
@@ -171,5 +170,8 @@ export default {
 <style lang="scss" scoped>
 .items-center{
   align-items: center;
+}
+.dd{
+  height: 100%;
 }
 </style>

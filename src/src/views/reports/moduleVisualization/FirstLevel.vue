@@ -8,10 +8,11 @@
       </v-col>
       <v-spacer></v-spacer>
      <v-col cols="12" sm="2" class="d-flex justify-center justify-sm-end ">
-        <help :report="{ name: 'module_visualization', level: 'first' }"  />
+        <help :report="{ name: 'module_visualization', level: 'first',log_level:'first_level' }" />
         <download
-          :report="{ name: 'module_visualization', level: 'first' }"
+          :report="{ name: 'module_visualization', level: 'first',log_level:'first_level'  }"
           :data="information"
+          @click="createLog({type:'help'})"
         />
       </v-col>
     </v-row>
@@ -56,8 +57,8 @@ export default {
   methods: {
     createLog() {
       let log = new Log(this.$route.params.course_id);
-      log.setContext(log.REPORT_CONTEXT);
       log.setReport(log.MODULE_VISUALIZATION);
+      log.setContext(log.REPORT_CONTEXT);
       log.setDeep(log.FIRST_LEVEL);
       log.add();
       log.enable();

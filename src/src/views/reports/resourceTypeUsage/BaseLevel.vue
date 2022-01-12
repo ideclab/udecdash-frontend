@@ -5,7 +5,7 @@
     </template>
     <template v-else>
       <template v-if="no_problem">
-        <router-view :information="resource_type_usage"  class="py-5 px-1 px-sm-5"></router-view>
+        <router-view :information="resource_type_usage"  class="py-5 px-1 px-sm-5 full-height"></router-view>
       </template>
       <template v-else>
       <warning :information="warning"></warning>
@@ -51,3 +51,8 @@ export default {
   })
 }
 </script>
+<style lang="scss" scoped>
+.full-height{
+  height: 100%;
+}
+</style>

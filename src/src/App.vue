@@ -9,14 +9,21 @@
     ></v-tour>
     <v-main>
       <router-view />
+
+
     </v-main>
+
+    
+    
   </v-app>
 </template>
 
 <script>
 import Webservice from "@/models/webservice";
+
 export default {
   name: "App",
+
   data: () => ({
     myCallbacks: {
       onSkip: function () {
@@ -51,15 +58,15 @@ export default {
       {
         target: "#v-step-1",
         content:
-          "<p class='mb-1'> Selector de secciones</p><span>Aquí podrás elegir la sección del curso de la cual quieres ver los reportes.</span>",
+          "<p class='mb-1'> Selector de secciones</p><span>Aquí podrás elegir la sección del curso para ver los reportes.</span>",
       },
       {
         target: "#v-step-2",
-        content: "<p class='mb-1'>Volver a mis cursos</p> <span>Aquí se podra volver al listado de cursos.</span>",
+        content: "<p class='mb-1'>Volver a mis cursos</p> <span>Aquí puedes volver al listado de cursos.</span>",
       },
       {
         target: "#v-step-3",
-        content: "<p class='mb-1'>Salir</p><span>Este boton sirve para cerrar sesión</span>",
+        content: "<p class='mb-1'>Salir</p><span>Con este botón puedes cerrar tu sesión.</span>",
         params: {
           placement: "bottom",
         },
@@ -75,7 +82,7 @@ export default {
       {
         target: "#v-step-5",
         content:
-          "<p class='mb-1'>Exportación</p><span>Descarga un documento PDF con la información que se está visualizando.</span>",
+          "<p class='mb-1'>Exportación</p><span>Permite descargar un documento PDF con toda la información que se está visualizando.</span>",
         params: {
           placement: "top",
         },
@@ -96,6 +103,7 @@ export default {
 html{
     overflow-y: auto !important;
 }
+
 #app {
   background-image: url("./assets/img/fondo.png");
   background-color: #11364a;
@@ -198,6 +206,8 @@ html{
       }
     }
   }
+
+
 }
 
 
